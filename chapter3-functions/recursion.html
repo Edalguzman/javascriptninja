@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="../scripts/ed-unit.js"></script>
+    <link href="../css/site.css" rel="stylesheet"/>
+    <script>
+        window.onload=function(){
+            function yell(n){
+                return n > 0 ? yell(n-1) + "a" : "hiy";
+            }
+            assert( yell(4) == "hiyaaaa",
+                    "Calling the function by itself comes naturally." );
+
+
+            var ninja = {
+                yell:  function yell(n){
+                    return n > 0 ? yell(n-1) + "a" : "hiy";
+                }
+            };
+            assert( ninja.yell(4) == "hiyaaaa",
+                    "A single object isn't too bad, either." );
+
+
+            var samurai = { yell: ninja.yell };
+            var ninja = {};
+            try {
+               assert( samurai.yell(4)=='hiyaaaa', "Samurai works too!");
+            } catch(e){
+                assert( false, "Uh, this isn't good! Where'd ninja.yell go? " +e );
+            }
+
+        };
+
+
+
+    </script>
+</head>
+<body>
+<ul id="results"></ul>
+</body>
+</html>
